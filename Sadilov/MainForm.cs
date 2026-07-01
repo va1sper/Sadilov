@@ -22,14 +22,12 @@ namespace Sadilov
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            // наполняем списки валютами
             string[] currencies = { "USD", "EUR", "RUB", "GBP", "JPY", "CAD" }; // доллар, евро, рубли, фунт стерлингов, йена, канадский доллар
             cmbFromCurrency.Items.AddRange(currencies);
             cmbToCurrency.Items.AddRange(currencies);
 
-            // значения по умолчанию
-            cmbFromCurrency.SelectedIndex = 0; // доллар
-            cmbToCurrency.SelectedIndex = 2;   // рубли
+            cmbFromCurrency.SelectedIndex = 0; 
+            cmbToCurrency.SelectedIndex = 2;   
         }
 
         private async void btnConvert_Click(object sender, EventArgs e)
@@ -103,17 +101,17 @@ namespace Sadilov
                     }
                     else
                     {
-                        lblHistoryResult.Text = $"Курс на {selectedDate.ToShortDateString()}: 1 {fromCurrency} = {rate:F4} {toCurrency}";
+                        lblHistoryResult.Text = $"курс на {selectedDate.ToShortDateString()}: 1 {fromCurrency} = {rate:F4} {toCurrency}";
                     }
                 }
                 else
                 {
-                    lblHistoryResult.Text = "Выбранная валюта не найдена в исторических данных.";
+                    lblHistoryResult.Text = "выбранная валюта не найдена в исторических данных.";
                 }
             }
             else
             {
-                lblHistoryResult.Text = "Не удалось получить исторические данные для этой даты.";
+                lblHistoryResult.Text = "не удалось получить исторические данные для этой даты.";
             }
         }
     }
