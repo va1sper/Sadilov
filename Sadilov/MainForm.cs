@@ -22,12 +22,14 @@ namespace Sadilov
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            // наполняем списки валютами
             string[] currencies = { "USD", "EUR", "RUB", "GBP", "JPY", "CAD" }; // доллар, евро, рубли, фунт стерлингов, йена, канадский доллар
             cmbFromCurrency.Items.AddRange(currencies);
             cmbToCurrency.Items.AddRange(currencies);
 
-            cmbFromCurrency.SelectedIndex = 0; 
-            cmbToCurrency.SelectedIndex = 2;   
+            // значения по умолчанию
+            cmbFromCurrency.SelectedIndex = 0; // доллар
+            cmbToCurrency.SelectedIndex = 2;   // рубли
         }
 
         private async void btnConvert_Click(object sender, EventArgs e)
@@ -101,7 +103,7 @@ namespace Sadilov
                     }
                     else
                     {
-                        lblHistoryResult.Text = $"курс на {selectedDate.ToShortDateString()}: 1 {fromCurrency} = {rate:F4} {toCurrency}";
+                        lblHistoryResult.Text = $"Курс на {selectedDate.ToShortDateString()}: 1 {fromCurrency} = {rate:F4} {toCurrency}";
                     }
                 }
                 else
