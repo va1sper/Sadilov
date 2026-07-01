@@ -22,34 +22,34 @@ namespace Sadilov
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            // Наполняем списки валютами при старте программы
-            string[] currencies = { "USD", "EUR", "RUB", "GBP", "JPY", "CAD" };
+            // наполняем списки валютами
+            string[] currencies = { "USD", "EUR", "RUB", "GBP", "JPY", "CAD" }; // доллар, евро, рубли, фунт стерлингов, йена, канадский доллар
             cmbFromCurrency.Items.AddRange(currencies);
             cmbToCurrency.Items.AddRange(currencies);
 
-            // Устанавливаем значения по умолчанию
-            cmbFromCurrency.SelectedIndex = 0; // USD
-            cmbToCurrency.SelectedIndex = 2;   // RUB
+            // значения по умолчанию
+            cmbFromCurrency.SelectedIndex = 0; // доллар
+            cmbToCurrency.SelectedIndex = 2;   // рубли
         }
 
         private async void btnConvert_Click(object sender, EventArgs e)
         {
-            // Проверяем, корректно ли введена сумма
+
             if (!double.TryParse(txtAmount.Text, out double amount) || amount <= 0)
             {
-                MessageBox.Show("Пожалуйста, введите корректную сумму (число больше нуля).", "Ошибка ввода", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("пожалуйста, введите корректную сумму (число больше нуля).", "ошибка ввода", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             string fromCurrency = cmbFromCurrency.SelectedItem.ToString();
             string toCurrency = cmbToCurrency.SelectedItem.ToString();
 
-            lblStatus.Text = "Связь с сервером API...";
-            btnConvert.Enabled = false; // Блокируем кнопку на время запроса
+            lblStatus.Text = "связь с сервером API...";
+            btnConvert.Enabled = false; 
 
             try
             {
-                // Вызываем метод нашего сервиса, который обращается к эндпоинту
+
                 var response = await _apiService.GetLatestRatesAsync(fromCurrency);
 
                 if (response != null && response.Rates != null && response.Rates.ContainsKey(toCurrency))
@@ -57,23 +57,63 @@ namespace Sadilov
                     double rate = response.Rates[toCurrency];
                     double convertedAmount = amount * rate;
 
-                    // Выводим результат на экран
+
                     lblResult.Text = $"{amount} {fromCurrency} = {convertedAmount:F2} {toCurrency}";
-                    lblStatus.Text = $"Курс обновлен в {DateTime.Now.ToShortTimeString()}";
+                    lblStatus.Text = $"курс обновлен в {DateTime.Now.ToShortTimeString()}";
                 }
                 else
                 {
-                    lblStatus.Text = "Не удалось получить курс для этой пары.";
+                    lblStatus.Text = "не удалось получить курс для этой пары.";
                 }
             }
             catch (Exception ex)
             {
-                lblStatus.Text = "Ошибка сети.";
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                lblStatus.Text = "ошибка сети.";
+                MessageBox.Show(ex.Message, "ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
-                btnConvert.Enabled = true; // Разблокируем кнопку
+                btnConvert.Enabled = true;
+            }
+        }
+
+        private async void btnShowHistory_Click(object sender, EventArgs e)
+        {
+            string fromCurrency = cmbFromCurrency.SelectedItem.ToString();
+            string toCurrency = cmbToCurrency.SelectedItem.ToString();
+
+            DateTime selectedDate = dtpHistoryDate.Value;
+            int year = selectedDate.Year;
+            int month = selectedDate.Month;
+            int day = selectedDate.Day;
+
+            lblHistoryResult.Text = "загрузка данных из прошлого...";
+
+            var apiService = new ApiService();
+            var response = await apiService.GetHistoricalRatesAsync(fromCurrency, year, month, day);
+
+            if (response != null && response.Rates != null)
+            {
+                if (response.Rates.TryGetValue(toCurrency, out double rate))
+                {
+                    if (double.TryParse(txtAmount.Text, out double amount))
+                    {
+                        double convertedValue = amount * rate;
+                        lblHistoryResult.Text = $"{amount} {fromCurrency} на дату {selectedDate.ToShortDateString()} составляло {convertedValue:F2} {toCurrency} (Курс: {rate:F4})";
+                    }
+                    else
+                    {
+                        lblHistoryResult.Text = $"Курс на {selectedDate.ToShortDateString()}: 1 {fromCurrency} = {rate:F4} {toCurrency}";
+                    }
+                }
+                else
+                {
+                    lblHistoryResult.Text = "Выбранная валюта не найдена в исторических данных.";
+                }
+            }
+            else
+            {
+                lblHistoryResult.Text = "Не удалось получить исторические данные для этой даты.";
             }
         }
     }

@@ -34,6 +34,9 @@
             this.btnConvert = new System.Windows.Forms.Button();
             this.lblResult = new System.Windows.Forms.Label();
             this.lblStatus = new System.Windows.Forms.Label();
+            this.dtpHistoryDate = new System.Windows.Forms.DateTimePicker();
+            this.btnShowHistory = new System.Windows.Forms.Button();
+            this.lblHistoryResult = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // txtAmount
@@ -84,17 +87,47 @@
             // lblStatus
             // 
             this.lblStatus.AutoSize = true;
-            this.lblStatus.Location = new System.Drawing.Point(546, 207);
+            this.lblStatus.Location = new System.Drawing.Point(546, 297);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(105, 16);
             this.lblStatus.TabIndex = 5;
             this.lblStatus.Text = "Готов к работе";
+            // 
+            // dtpHistoryDate
+            // 
+            this.dtpHistoryDate.Location = new System.Drawing.Point(12, 109);
+            this.dtpHistoryDate.Name = "dtpHistoryDate";
+            this.dtpHistoryDate.Size = new System.Drawing.Size(200, 22);
+            this.dtpHistoryDate.TabIndex = 6;
+            // 
+            // btnShowHistory
+            // 
+            this.btnShowHistory.Location = new System.Drawing.Point(519, 61);
+            this.btnShowHistory.Name = "btnShowHistory";
+            this.btnShowHistory.Size = new System.Drawing.Size(148, 42);
+            this.btnShowHistory.TabIndex = 7;
+            this.btnShowHistory.Text = "Показать исторический курс";
+            this.btnShowHistory.UseVisualStyleBackColor = true;
+            this.btnShowHistory.Click += new System.EventHandler(this.btnShowHistory_Click);
+            // 
+            // lblHistoryResult
+            // 
+            this.lblHistoryResult.AllowDrop = true;
+            this.lblHistoryResult.AutoSize = true;
+            this.lblHistoryResult.Location = new System.Drawing.Point(546, 225);
+            this.lblHistoryResult.Name = "lblHistoryResult";
+            this.lblHistoryResult.Size = new System.Drawing.Size(205, 16);
+            this.lblHistoryResult.TabIndex = 8;
+            this.lblHistoryResult.Text = "Результат отобразится здесь";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lblHistoryResult);
+            this.Controls.Add(this.btnShowHistory);
+            this.Controls.Add(this.dtpHistoryDate);
             this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.lblResult);
             this.Controls.Add(this.btnConvert);
@@ -117,6 +150,9 @@
         private System.Windows.Forms.Button btnConvert;
         private System.Windows.Forms.Label lblResult;
         private System.Windows.Forms.Label lblStatus;
+        private System.Windows.Forms.DateTimePicker dtpHistoryDate;
+        private System.Windows.Forms.Button btnShowHistory;
+        private System.Windows.Forms.Label lblHistoryResult;
     }
 }
 
