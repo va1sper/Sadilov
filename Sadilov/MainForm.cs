@@ -116,5 +116,10 @@ namespace Sadilov
                 lblHistoryResult.Text = "не удалось получить исторические данные для этой даты.";
             }
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

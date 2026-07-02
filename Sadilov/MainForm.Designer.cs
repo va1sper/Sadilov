@@ -37,11 +37,13 @@
             this.dtpHistoryDate = new System.Windows.Forms.DateTimePicker();
             this.btnShowHistory = new System.Windows.Forms.Button();
             this.lblHistoryResult = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // txtAmount
             // 
-            this.txtAmount.Location = new System.Drawing.Point(56, 61);
+            this.txtAmount.BackColor = System.Drawing.SystemColors.Info;
+            this.txtAmount.Location = new System.Drawing.Point(48, 128);
             this.txtAmount.Name = "txtAmount";
             this.txtAmount.Size = new System.Drawing.Size(100, 22);
             this.txtAmount.TabIndex = 0;
@@ -49,9 +51,10 @@
             // 
             // cmbFromCurrency
             // 
+            this.cmbFromCurrency.BackColor = System.Drawing.SystemColors.Highlight;
             this.cmbFromCurrency.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbFromCurrency.FormattingEnabled = true;
-            this.cmbFromCurrency.Location = new System.Drawing.Point(298, 29);
+            this.cmbFromCurrency.Location = new System.Drawing.Point(279, 128);
             this.cmbFromCurrency.Name = "cmbFromCurrency";
             this.cmbFromCurrency.Size = new System.Drawing.Size(121, 24);
             this.cmbFromCurrency.TabIndex = 1;
@@ -60,25 +63,26 @@
             // 
             this.cmbToCurrency.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbToCurrency.FormattingEnabled = true;
-            this.cmbToCurrency.Location = new System.Drawing.Point(298, 74);
+            this.cmbToCurrency.Location = new System.Drawing.Point(279, 168);
             this.cmbToCurrency.Name = "cmbToCurrency";
             this.cmbToCurrency.Size = new System.Drawing.Size(121, 24);
             this.cmbToCurrency.TabIndex = 2;
             // 
             // btnConvert
             // 
-            this.btnConvert.Location = new System.Drawing.Point(519, 30);
+            this.btnConvert.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnConvert.Location = new System.Drawing.Point(549, 109);
             this.btnConvert.Name = "btnConvert";
             this.btnConvert.Size = new System.Drawing.Size(148, 23);
             this.btnConvert.TabIndex = 3;
             this.btnConvert.Text = "Конвертировать";
-            this.btnConvert.UseVisualStyleBackColor = true;
+            this.btnConvert.UseVisualStyleBackColor = false;
             this.btnConvert.Click += new System.EventHandler(this.btnConvert_Click);
             // 
             // lblResult
             // 
             this.lblResult.AutoSize = true;
-            this.lblResult.Location = new System.Drawing.Point(546, 158);
+            this.lblResult.Location = new System.Drawing.Point(546, 276);
             this.lblResult.Name = "lblResult";
             this.lblResult.Size = new System.Drawing.Size(205, 16);
             this.lblResult.TabIndex = 4;
@@ -87,7 +91,7 @@
             // lblStatus
             // 
             this.lblStatus.AutoSize = true;
-            this.lblStatus.Location = new System.Drawing.Point(546, 297);
+            this.lblStatus.Location = new System.Drawing.Point(546, 398);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(105, 16);
             this.lblStatus.TabIndex = 5;
@@ -95,36 +99,50 @@
             // 
             // dtpHistoryDate
             // 
-            this.dtpHistoryDate.Location = new System.Drawing.Point(12, 109);
+            this.dtpHistoryDate.CalendarMonthBackground = System.Drawing.SystemColors.HotTrack;
+            this.dtpHistoryDate.Location = new System.Drawing.Point(12, 220);
             this.dtpHistoryDate.Name = "dtpHistoryDate";
             this.dtpHistoryDate.Size = new System.Drawing.Size(200, 22);
             this.dtpHistoryDate.TabIndex = 6;
             // 
             // btnShowHistory
             // 
-            this.btnShowHistory.Location = new System.Drawing.Point(519, 61);
+            this.btnShowHistory.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnShowHistory.Location = new System.Drawing.Point(549, 158);
             this.btnShowHistory.Name = "btnShowHistory";
             this.btnShowHistory.Size = new System.Drawing.Size(148, 42);
             this.btnShowHistory.TabIndex = 7;
             this.btnShowHistory.Text = "Показать исторический курс";
-            this.btnShowHistory.UseVisualStyleBackColor = true;
+            this.btnShowHistory.UseVisualStyleBackColor = false;
             this.btnShowHistory.Click += new System.EventHandler(this.btnShowHistory_Click);
             // 
             // lblHistoryResult
             // 
             this.lblHistoryResult.AllowDrop = true;
             this.lblHistoryResult.AutoSize = true;
-            this.lblHistoryResult.Location = new System.Drawing.Point(546, 225);
+            this.lblHistoryResult.Location = new System.Drawing.Point(546, 336);
             this.lblHistoryResult.Name = "lblHistoryResult";
             this.lblHistoryResult.Size = new System.Drawing.Size(205, 16);
             this.lblHistoryResult.TabIndex = 8;
             this.lblHistoryResult.Text = "Результат отобразится здесь";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.IndianRed;
+            this.label1.Location = new System.Drawing.Point(276, 27);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(143, 16);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "КОНВЕРТЕР ВАЛЮТ";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.lblHistoryResult);
             this.Controls.Add(this.btnShowHistory);
             this.Controls.Add(this.dtpHistoryDate);
@@ -153,6 +171,7 @@
         private System.Windows.Forms.DateTimePicker dtpHistoryDate;
         private System.Windows.Forms.Button btnShowHistory;
         private System.Windows.Forms.Label lblHistoryResult;
+        private System.Windows.Forms.Label label1;
     }
 }
 

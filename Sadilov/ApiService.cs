@@ -69,7 +69,7 @@ namespace Sadilov
                 if (ratesInRub.ContainsKey(baseCurrency))
                 {
                     double baseInRub = ratesInRub[baseCurrency];
-                    string[] my6Currencies = { "USD", "EUR", "RUB", "BYN", "KZT", "CNY" };
+                    string[] my6Currencies = { "USD", "EUR", "RUB", "GBP", "JPY", "CAD" };
 
                     foreach (string cur in my6Currencies)
                     {
